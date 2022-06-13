@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.davidcampos</groupId>
-    <artifactId>kafka-spark-flink-example</artifactId>
+    <artifactId>flink-streaming-processing</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -39,29 +39,6 @@
             <version>1.1.0</version>
         </dependency>
 
-        <!-- Zookeeper -->
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-            <version>0.10</version>
-        </dependency>
-
-        <!--Spark-->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.11</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-scala_2.11</artifactId>
-            <version>2.9.5</version>
-        </dependency>
 
         <!--Flink-->
         <dependency>
@@ -84,6 +61,14 @@
             <artifactId>flink-connector-kafka-0.10_2.11</artifactId>
             <version>1.4.2</version>
         </dependency>
+
+        <!-- Zookeeper -->
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency>
+
     </dependencies>
 
     <build>
