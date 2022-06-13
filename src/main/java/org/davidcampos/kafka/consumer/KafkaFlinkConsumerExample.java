@@ -1,7 +1,7 @@
 package org.davidcampos.kafka.consumer;
 
 
-import cdorg.apache.flink.api.common.functions.FlatMapFunction;
+import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
