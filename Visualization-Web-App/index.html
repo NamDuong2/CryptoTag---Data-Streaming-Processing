@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--<meta name='viewport' content='width=device-width, initial-scale=1.0'> -->
+    <title>Trending Crypto Tag on Twitter</title>
+
+    <!-- Bootstraps Java Scipts Links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU' crossorigin='anonymous'>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js' integrity='sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/' crossorigin='anonymous'></script>
+
+    <!-- JQuery links  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!--High CHART LIVE  -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <!--Gauge  -->
+    <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+
+        var chartBTC;
+        var chartNFT;
+    
+        $(document).ready(function() {
+
+            namespace = '/test';
+            var socket = io(namespace);
+
+           //console.log(("test"));
+
+            socket.on('my_response', function(msg) {
+                //$('#time').text( $('<div/>').text(msg.data).html());
+                //var seriesBTC = chartBTC.series[0],
+                //   shiftBTC = seriesBTC.data.length > 20;
+                
+                // NFT
+                //var seriesNFT = chartNFT.series[0],
+                //    shiftNFT = seriesNFT.data.length > 20;
+                    
+                // Add the Point
+                // NFT
+                var data_nft = [];
+                data_nft.push(msg.data[0]);
+                data_nft.push(msg.data[1]);
+                                    
+                // Add the Point
+                // BTC
+                var data_btc = [];
+                data_btc.push(msg.data[0]);
+                data_btc.push(msg.data[2]);
+
+                //SOL
+                var data_sol = [];
+                data_sol.push(msg.data[0]);
+                data_sol.push(msg.data[6]);
+                                    
+                // Add the Point
+                // BNB
+                var data_bnb = [];
+                data_bnb.push(msg.data[0]);
+                data_bnb.push(msg.data[5]);
+
+                //ETH
+                var data_eth = [];
+                data_eth.push(msg.data[0]);
+                data_eth.push(msg.data[4]);
+                                    
+                // Add the Point
+                // LUNA
+                var data_luna = [];
+                data_luna.push(msg.data[0]);
+                data_luna.push(msg.data[3]);
+
+                //chartBTC.series[0].addPoint(data_btc, true, shiftBTC);
+                //chartNFT.series[0].addPoint(data_nft, true, shiftNFT);
+                //$(".sensor1").text("");
+                //$(".sensor1").text("BTC : " +  Math.round(data_btc[1]));
+                //$(".sensor2").text("");
+                //$(".sensor2").text("NFT : " +  Math.round(data_nft[1]));
+                $("#countNFT").text("");
+                $("#countNFT").text(Math.round(data_nft[1]));
+
+                $("#countBTC").text("");
+                $("#countBTC").text(Math.round(data_btc[1]));
+
+                $("#countLUNA").text("");
+                $("#countLUNA").text(Math.round(data_luna[1]));
+
+                $("#countETH").text("");
+                $("#countETH").text(Math.round(data_eth[1]));
+
+                $("#countBNB").text("");
+                $("#countBNB").text(Math.round(data_bnb[1]));
+
+                $("#countSOL").text("");
+                $("#countSOL").text(Math.round(data_sol[1]));
+                //console.log(msg);            
+        });          
+    });
+    
+        $(document).ready(function() {
+
+                // --------------Chart 1 ----------------------------
+                chartBTC = new Highcharts.Chart({
+                    chart:
+                        {
+                        renderTo: 'BTC',
+                        defaultSeriesType: 'area',
+                        events: {
+                                load: function() {
+                                        namespace = '/test';
+                                        var socket = io(namespace);
+                                        var seriesBTC = this.series[0], shiftBTC = seriesBTC.data.length > 20;
+                                        socket.on('my_response', function(msg) {
+                                            var data_btc = [];
+                                            data_btc.push(msg.data[0]);
+                                            data_btc.push(msg.data[2]);
+                                            seriesBTC.addPoint(data_btc, true, shiftBTC);
+                                        })
+                                }
+                            }
+                        },
+                    title:
+                        {
+                        text: 'BTC'
+                        },
+                    xAxis: {
+                        type: 'datetime',
+                        tickPixelInterval: 150,
+                        maxZoom: 20 * 1000
+                            },
+                    yAxis: {
+                        minPadding: 0.2,
+                        maxPadding: 0.2,
+                        title: {
+                            text: 'Value',
+                            margin: 80
+                                }
+                            },
+                    series: [{
+                        color : '#c23d23',
+                        lineColor: '#303030',
+                        name: 'BTC',
+                        data: []
+                    }]
+                });
+
+    
+                // --------------Chart 1 Ends - -----------------
+                
+                chartNFT = new Highcharts.Chart({
+                    chart:
+                        {
+                            renderTo: 'NFT',
+                            defaultSeriesType: 'area',
+                            events: {
+                                load: function() {
+                                        namespace = '/test';
+                                        var socket = io(namespace);
+                                        var seriesNFT = this.series[0],
+                                                shiftNFT = seriesNFT.data.length > 20;
+                                        socket.on('my_response', function(msg) {
+                                            
+                                            var data_nft = [];
+                                            data_nft.push(msg.data[0]);
+                                            data_nft.push(msg.data[1]);
+                                            seriesNFT.addPoint(data_nft, true, shiftNFT);
+                                        })
+                                }
+                            }
+                        },
+                    title:
+                        {
+                            text: 'NFT'
+                        },
+                    xAxis: {
+                        type: 'datetime',
+                        tickPixelInterval: 150,
+                        maxZoom: 20 * 1000
+                    },
+                    yAxis: {
+                        minPadding: 0.2,
+                        maxPadding: 0.2,
+                        title: {
+                            text: 'Value',
+                            margin: 80
+                        }
+                    },
+                    series: [{
+                        lineColor: '#1d82b8',
+                        name: 'NFT',
+                        data: []
+                    }]
+                });
+            });
+
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="text-center text-white">Welcome to Crypto Tag Treding Visualization </h1>
+    </div>
+    <br>
+    <br>
+    <!-- <div id="time" ></div> -->
+<!--    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-5 jumbotron p-2 mx-1">
+                <h1 class="sensor1"> Sensor : </h1>
+            </div>
+            <br>
+
+            <div class="col-5 jumbotron p-2 mx-1">
+                <h1 class="sensor2">Sensor :</h1>
+            </div>
+            <br>
+
+        </div>
+    </div>
+-->
+
+    <div class='container-fluid d-flex align-items-center'>
+        <div>
+            <div class='row d-flex align-items-center justify-content-center mb-5'>
+                
+                <div class='col-2 p-5 me-5'>
+                    <div class='d-flex justify-content-end mb-3'>Bitcoin</div>
+                    <div class='d-flex justify-content-end pair'>BTC</div>
+                    <div class='d-flex justify-content-end price' id='countBTC'>...</div>
+                </div>
+                <div class='col-2 p-5 me-5'>
+                    <div class='d-flex justify-content-end mb-3'>Ethereum</div>
+                    <div class='d-flex justify-content-end pair'>ETH</div>
+                    <div class='d-flex justify-content-end price' id='countETH'>...</div>
+                </div>
+                <div class='col-2 p-5'>
+                    <div class='d-flex justify-content-end mb-3'>Luna</div>
+                    <div class='d-flex justify-content-end pair'>Luna</div>
+                    <div class='d-flex justify-content-end price' id='countLUNA'>...</div>
+                </div>
+            </div>
+            <div class='row d-flex align-items-center justify-content-center mb-5'>
+                <div class='col-2 p-5 me-5'>
+                    <div class='d-flex justify-content-end mb-3'>NFT</div>
+                    <div class='d-flex justify-content-end pair'>NFT</div>
+                    <div class='d-flex justify-content-end price' id='countNFT'>...</div>
+                </div>
+                <div class='col-2 p-5 me-5'>
+                    <div class='d-flex justify-content-end mb-3'>Solana</div>
+                    <div class='d-flex justify-content-end pair'>SOL</div>
+                    <div class='d-flex justify-content-end price' id='countSOL'>...</div>
+                </div>
+                <div class='col-2 p-5'>
+                    <div class='d-flex justify-content-end mb-3'>Binance Coin</div>
+                    <div class='d-flex justify-content-end pair'>BNB</div>
+                    <div class='d-flex justify-content-end price' id='countBNB'>...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--
+    <style>
+
+        .jumbotron{
+            widows: 150px;
+            height: 220px;
+            justify-content: center;
+        }
+
+        .row{
+            justify-content: center;
+        }
+
+        
+    </style>
+-->
+
+    <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+        .pair {
+                font-size: 0.8vw;
+                font-weight: 500;
+            }
+        .price {
+                    font-family: Consolas, monaco, monospace;
+                }
+        .row {
+            width: 100vw;
+        }
+        .col-2 {
+                font-size: 1.1vw;
+                font-weight: 700;
+                border-radius: 2vw;
+                box-shadow: 10px 10px 25px #E0E0E0;
+        }
+    </style>
+
+    <div class="container-fluid">
+
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="container-fluid" id="BTC">
+
+            </div>
+        </div>
+    </div>
+
+<br>
+<br>
+<br>
+
+    <div class="container-fluid">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="container-fluid" id="NFT">
+
+            </div>
+        </div>
+    </div>
+
+<script>
+    class Image{
+
+        constructor(imgUrl, size)
+        {
+            this.imgUrl=imgUrl;
+            this.size=size;
+        }
+
+        backgroundImage()
+        {
+            console.log("inside function ")
+            // Select the Image
+            var img = document.querySelector(".jumbotron");
+
+            // create Css Text
+            var text = "margin:auto;"+
+                "background-image: url("+this.imgUrl+");" +
+                "background-size:cover;"+
+                "opacity:1;"+
+                "background-blend-mode: darken;"+
+                "height: "+ this.size + "vh;";
+
+            img.style.cssText =  text;
+        }
+
+        centerTitle()
+        {
+            /*
+                Center the Title
+             */
+            var t1 = document.querySelector("#title");
+            t1.classList.add("text-white");
+            t1.classList.add("text-center");
+            t1.classList.add("display-3");
+        }
+    }
+    const imgUrl = 'https://media3.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif'
+    const size = "50";
+    var obj = new Image(imgUrl, size);
+    obj.backgroundImage();
+    obj.centerTitle();
+</script>
+
+</body>
+</html>
