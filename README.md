@@ -8,5 +8,5 @@
 - Making use of massive data from users on different sources, different social media to build a platform for aggregating opinions, sentiments and analyzing in real-time and batch processing 
 
 ## Architecture
-
+![image](https://user-images.githubusercontent.com/75520765/177558360-f88beeed-30fd-486d-8daf-092810168c6a.png)
 ## Set Up
