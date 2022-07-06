@@ -1,7 +1,7 @@
 # CryptoTag---Data-Streaming-Processing
 ## Motivation
 - Crypto prices fluctuate and their values are extremely volatile because they are influenced by scarcity, investor and user sentiments, government regulations, media hype and so much more. All of these factors work together to create price volatility -> BUT let’s take a deep dive into media hype: 
-![image](https://user-images.githubusercontent.com/75520765/177505831-dd6b43b5-6e13-4ea3-b70a-02ba9cae86eb.png)
+        ![image](https://user-images.githubusercontent.com/75520765/177505831-dd6b43b5-6e13-4ea3-b70a-02ba9cae86eb.png){ width=60%,height:30px }
     - High demand increases price. In this way, the price of cryptocurrencies is affected each time there’s hype in the media. Prices can rise with positive hype and plummet with negative attention. There is strong evidence to suggest that news - good or bad - has an effect on the prices of cryptocurrencies.
     - There is also the impact made by influential people among the crypto community, such as Elon Musk, who influenced the DOGE coin value several times, whether meaning to or not.
 => We see that although there are a lot of factors influencing cryptocurrency value, most of them are basically investor and user sentiments including two things: greed and fear. Some common phenomenon such as FOMO, FOBI, or Panic Sell, FUD, …
